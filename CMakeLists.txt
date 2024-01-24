@@ -18,12 +18,14 @@ target_sources(MyProject PRIVATE
 
 # Add the include directories for the main executable
 target_include_directories(MyProject PRIVATE
-    include
     src
 )
 
 # Add the test executable
-add_executable(MyProjectTests tests/myfile_test.cpp)
+add_executable(MyProjectTests
+    tests/myfile_test.cpp
+    src/myfile.cpp
+)
 
 # Add the source files for tests
 target_sources(MyProjectTests PRIVATE
@@ -38,12 +40,11 @@ target_link_libraries(MyProjectTests PRIVATE
 
 # Add include directories for tests
 target_include_directories(MyProjectTests PRIVATE
-    ${CMAKE_SOURCE_DIR}/include  # Assuming 'include' is at the top level of your project
+    ${CMAKE_SOURCE_DIR}/src  # Assuming 'include' is at the top level of your project
 )
 
 # Add the include directories for both main executable and tests
 target_include_directories(MyProject PRIVATE
-    include
     src
 )
 
