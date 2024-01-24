@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.14)
 
 project(Thermo)
 
@@ -6,49 +6,35 @@ project(Thermo)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Find GTest package
-find_package(GTest REQUIRED)
+# Fetch Google Test
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/f8d7d77c06936315286eb55f8de22cd23c188571.zip
+)
+FetchContent_MakeAvailable(googletest)
+
+# Add a library with your source files
+add_library(Thermolib src/myfile.cpp)
 
 # Add the main executable
 add_executable(Thermo main.cpp)
+target_link_libraries(Thermo PRIVATE Thermolib)
 
-# Add the source files to the executable
-target_sources(Thermo PRIVATE
-    src/myfile.cpp
-)
-
-# Add the include directories for the main executable
-target_include_directories(Thermo PRIVATE
-    src
-)
+# Enable testing
+enable_testing()
 
 # Add the test executable
-add_executable(ThermoTests
-    tests/myfile_test.cpp
-    src/myfile.cpp
-)
+add_executable(ThermoTests tests/myfile_test.cpp)
+target_link_libraries(ThermoTests PRIVATE Thermolib gtest_main)
 
-# Add the source files for tests
-target_sources(ThermoTests PRIVATE
-    tests/myfile_test.cpp
-)
+# Include directories
+target_include_directories(Thermolib PUBLIC src)
+target_include_directories(Thermo PRIVATE src)
+target_include_directories(ThermoTests PRIVATE src)
 
-# Link Google Test to the test executable
-target_link_libraries(ThermoTests PRIVATE
-    GTest::GTest
-    GTest::Main
-)
+# Include the GoogleTest module
+include(GoogleTest)
 
-# Add include directories for tests
-target_include_directories(ThermoTests PRIVATE
-    ${CMAKE_SOURCE_DIR}/src  # Assuming 'include' is at the top level of your project
-)
-
-# Add the include directories for both main executable and tests
-target_include_directories(Thermo PRIVATE
-    src
-)
-
-# Add a test target
-enable_testing()
-add_test(NAME ThermoTests COMMAND ThermoTests)
+# Discover and register tests
+gtest_discover_tests(ThermoTests)
