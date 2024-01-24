@@ -2,8 +2,9 @@ cmake_minimum_required(VERSION 3.10)
 
 project(Thermo)
 
-# Set C++ standard
-set(CMAKE_CXX_STANDARD 11)
+# GoogleTest requires at least C++14
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Find GTest package
 find_package(GTest REQUIRED)
