@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(MyProject)
+project(Thermo)
 
 # Set C++ standard
 set(CMAKE_CXX_STANDARD 11)
@@ -9,45 +9,45 @@ set(CMAKE_CXX_STANDARD 11)
 find_package(GTest REQUIRED)
 
 # Add the main executable
-add_executable(MyProject main.cpp)
+add_executable(Thermo main.cpp)
 
 # Add the source files to the executable
-target_sources(MyProject PRIVATE
+target_sources(Thermo PRIVATE
     src/myfile.cpp
 )
 
 # Add the include directories for the main executable
-target_include_directories(MyProject PRIVATE
+target_include_directories(Thermo PRIVATE
     src
 )
 
 # Add the test executable
-add_executable(MyProjectTests
+add_executable(ThermoTests
     tests/myfile_test.cpp
     src/myfile.cpp
 )
 
 # Add the source files for tests
-target_sources(MyProjectTests PRIVATE
+target_sources(ThermoTests PRIVATE
     tests/myfile_test.cpp
 )
 
 # Link Google Test to the test executable
-target_link_libraries(MyProjectTests PRIVATE
+target_link_libraries(ThermoTests PRIVATE
     GTest::GTest
     GTest::Main
 )
 
 # Add include directories for tests
-target_include_directories(MyProjectTests PRIVATE
+target_include_directories(ThermoTests PRIVATE
     ${CMAKE_SOURCE_DIR}/src  # Assuming 'include' is at the top level of your project
 )
 
 # Add the include directories for both main executable and tests
-target_include_directories(MyProject PRIVATE
+target_include_directories(Thermo PRIVATE
     src
 )
 
 # Add a test target
 enable_testing()
-add_test(NAME MyProjectTests COMMAND MyProjectTests)
+add_test(NAME ThermoTests COMMAND ThermoTests)
