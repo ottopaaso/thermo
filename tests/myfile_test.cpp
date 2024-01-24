@@ -1,9 +1,17 @@
 #include "gtest/gtest.h"
 #include "myfile.h"
 
-TEST(MyFileTest, Add) {
+TEST(MyFileTest, Add_PositiveNumbers)
+{
     EXPECT_EQ(add(2, 3), 5);
-    EXPECT_EQ(add(-1, 1), 0);
-    EXPECT_EQ(add(0, 0), 0);
 }
 
+TEST(MyFileTest, Add_PositiveAndNegativeNumbers)
+{
+    EXPECT_EQ(add(-1, 1), 0);
+}
+
+TEST(MyFileTest, Add_ZeroNumbers)
+{
+    EXPECT_EQ(add(0, 0), 0);
+}
