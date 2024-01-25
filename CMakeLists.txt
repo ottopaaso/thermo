@@ -26,7 +26,10 @@ target_link_libraries(Thermo PRIVATE Thermolib)
 enable_testing()
 
 # Add the test executable
-add_executable(ThermoTests tests/myfile_test.cpp)
+add_executable(ThermoTests
+    tests/myfile_test.cpp
+    tests/HeaterInteractor_test.cpp
+)
 target_link_libraries(ThermoTests PRIVATE Thermolib gtest_main)
 
 # Include directories
