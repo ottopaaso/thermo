@@ -10,13 +10,13 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install dependencies
-        run: sudo apt-get update && sudo apt-get install -y cmake
+        run: sudo apt-get update && sudo apt-get install -y cmake make
 
       - name: Configure
-        run: cmake -S . -B build
+        run: make configure
 
       - name: Build
-        run: cmake --build build
+        run: make build
 
       - name: Test
-        run: ctest --test-dir build --output-on-failure
+        run: make test
