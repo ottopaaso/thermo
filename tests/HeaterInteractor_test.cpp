@@ -1,9 +1,9 @@
 #include "gtest/gtest.h"
 
 #include "Clock.h"
-#include "Heater.h"
+#include "Heater.hpp"
 #include "HeaterInteractor.h"
-#include "TemperatureSensor.h"
+#include "TemperatureSensor.hpp"
 
 class ClockMock : public Clock {
     public:
