@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Clock.h"
-#include "Heater.h"
-#include "TemperatureSensor.h"
+#include "Heater.hpp"
+#include "TemperatureSensor.hpp"
 
 #define HEATER_STATE_CHANGE_INTERVAL std::chrono::seconds(30)
 
