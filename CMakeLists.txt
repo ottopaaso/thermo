@@ -16,7 +16,10 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(googletest)
 
 # Add a library with your source files
-add_library(Thermolib src/myfile.cpp)
+add_library(Thermolib
+    src/myfile.cpp
+    src/Clock.cpp
+)
 
 # Add the main executable
 add_executable(Thermo main.cpp)
