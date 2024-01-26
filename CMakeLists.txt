@@ -17,7 +17,6 @@ FetchContent_MakeAvailable(googletest)
 
 # Add a library with your source files
 add_library(Thermolib
-    src/myfile.cpp
     src/Clock.cpp
 )
 
@@ -30,7 +29,6 @@ enable_testing()
 
 # Add the test executable
 add_executable(ThermoTests
-    tests/myfile_test.cpp
     tests/HeaterInteractor_test.cpp
 )
 target_link_libraries(ThermoTests PRIVATE Thermolib gtest_main)
