@@ -1,6 +1,9 @@
 #include "gtest/gtest.h"
 
 #include "Clock.h"
+#include "Heater.h"
+#include "HeaterInteractor.h"
+#include "TemperatureSensor.h"
 
 class ClockMock : public Clock {
     public:
@@ -24,69 +27,6 @@ class ClockMock : public Clock {
 };
 
 ClockMock clockMock = ClockMock(std::chrono::system_clock::now());
-
-class TemperatureSensor {
-    public:
-        TemperatureSensor(float temperature) : _temperature(temperature) {
-        }
-
-        float getTemperature() {
-            return _temperature;
-        }
-
-        void setTemperature(float temperature) {
-            _temperature = temperature;
-        }
-
-    private:
-        float _temperature;
-};
-
-class Heater {
-    public:
-        Heater() : _isHeating(false) {
-        }
-
-        void setHeating(bool isHeating) {
-            _isHeating = isHeating;
-        }
-
-        bool isHeating() {
-            return _isHeating;
-        }
-
-    private:
-        bool _isHeating = false;
-};
-
-#define HEATER_STATE_CHANGE_INTERVAL std::chrono::seconds(30)
-
-class HeaterInteractor {
-    public:
-        TemperatureSensor* _tempSensor;
-        Heater* _heater;
-        float _targetTemperature;
-        SystemTimePoint _lastChangeTime;
-
-        HeaterInteractor(TemperatureSensor* tempSensor, Heater* heater, float targetTemperature) :
-            _targetTemperature(targetTemperature),
-            _heater(heater),
-            _tempSensor(tempSensor) {
-                _lastChangeTime = Clock::getInstance().now();
-        }
-
-        void tick() {
-            const auto now = Clock::getInstance().now();
-            if (now - _lastChangeTime < HEATER_STATE_CHANGE_INTERVAL) {
-                return;
-            }
-
-            float currentTemperature = _tempSensor->getTemperature();
-            _heater->setHeating(currentTemperature < _targetTemperature);
-            _lastChangeTime = now;
-        }
-};
-
 
 TEST(HeaterInteractorTest, LimitHeaterChanges_DuringInterval)
 {
