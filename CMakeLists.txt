@@ -22,6 +22,7 @@ add_library(Thermolib
     src/clock/Clock.cpp
     src/heater/Heater.cpp
     src/heater/HeaterInteractor.cpp
+    src/temperature_sensor/TemperatureSensor.cpp
 )
 
 # Add the main executable
