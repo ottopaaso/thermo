@@ -18,7 +18,7 @@ ITemperatureSensor &Objects::getTemperatureSensor()
     return temperatureSensor;
 }
 
-Heater &Objects::getHeater()
+IHeater &Objects::getHeater()
 {
     static Heater heater;
     return heater;

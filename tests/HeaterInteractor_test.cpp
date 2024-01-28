@@ -3,11 +3,13 @@
 
 #include "mocks/MockSystem.h"
 #include "mocks/MockTemperatureSensor.h"
+#include "mocks/MockHeater.h"
 
 TEST(HeaterInteractorTest, LimitHeaterChanges_DuringInterval)
 {
     MockSystem mockSystem;
     MockTemperatureSensor mockTemperatureSensor;
+    MockHeater mockHeater;
 
     // HeaterInteractor heaterInteractor(TemperatureSensor & tempSensor, Heater & heater, Clock & clock, float targetTemperature);
     /*
