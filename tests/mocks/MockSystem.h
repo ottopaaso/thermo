@@ -1,7 +1,8 @@
 #pragma once
 
 #include <gmock/gmock.h>
-#include "ISystem.h"
+
+#include "system/ISystem.h"
 
 class MockSystem : public ISystem
 {

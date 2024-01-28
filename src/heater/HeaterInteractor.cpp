@@ -1,9 +1,9 @@
 #include "HeaterInteractor.h"
 
-HeaterInteractor::HeaterInteractor(TemperatureSensor &tempSensor, Heater &heater, Clock &clock, float targetTemperature) : _tempSensor(tempSensor),
-                                                                                                                           _heater(heater),
-                                                                                                                           _clock(clock),
-                                                                                                                           _targetTemperature(targetTemperature)
+HeaterInteractor::HeaterInteractor(ITemperatureSensor &tempSensor, Heater &heater, Clock &clock, float targetTemperature) : _tempSensor(tempSensor),
+                                                                                                                            _heater(heater),
+                                                                                                                            _clock(clock),
+                                                                                                                            _targetTemperature(targetTemperature)
 {
     _lastChangeTime = _clock.now();
 }

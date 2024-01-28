@@ -1,12 +1,15 @@
-#include "gtest/gtest.h"
+#include <gtest/gtest.h>
+#include <gmock/gmock.h>
 
-#include "clock/Clock.h"
-#include "heater/Heater.h"
-#include "heater/HeaterInteractor.h"
-#include "temperature_sensor/TemperatureSensor.h"
+#include "mocks/MockSystem.h"
+#include "mocks/MockTemperatureSensor.h"
 
 TEST(HeaterInteractorTest, LimitHeaterChanges_DuringInterval)
 {
+    MockSystem mockSystem;
+    MockTemperatureSensor mockTemperatureSensor;
+
+    // HeaterInteractor heaterInteractor(TemperatureSensor & tempSensor, Heater & heater, Clock & clock, float targetTemperature);
     /*
     auto tempSensor = TemperatureSensor(20.0f);
     auto heater = Heater();
