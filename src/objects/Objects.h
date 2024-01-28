@@ -11,7 +11,7 @@ class Objects
 public:
     static ISystem &getSystem();
     static Clock &getClock();
-    static TemperatureSensor &getTemperatureSensor();
+    static ITemperatureSensor &getTemperatureSensor();
     static Heater &getHeater();
     static HeaterInteractor &getHeaterInteractor();
 };

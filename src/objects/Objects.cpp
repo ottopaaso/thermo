@@ -12,7 +12,7 @@ Clock &Objects::getClock()
     return clock;
 }
 
-TemperatureSensor &Objects::getTemperatureSensor()
+ITemperatureSensor &Objects::getTemperatureSensor()
 {
     static TemperatureSensor temperatureSensor(20.0f);
     return temperatureSensor;
