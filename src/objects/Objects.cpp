@@ -6,7 +6,7 @@ ISystem &Objects::getSystem()
     return system;
 }
 
-Clock &Objects::getClock()
+IClock &Objects::getClock()
 {
     static Clock clock(getSystem());
     return clock;

@@ -1,12 +1,15 @@
 #pragma once
 
+#include "IClock.h"
+
 #include "system/ISystem.h"
 
-class Clock
+class Clock : public IClock
 {
 public:
-    Clock(ISystem &system);
-    SystemTimePoint now() const;
+    explicit Clock(ISystem &system);
+
+    SystemTimePoint now() const override;
 
 private:
     ISystem &_system;
