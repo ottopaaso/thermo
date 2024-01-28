@@ -9,13 +9,13 @@
 class HeaterInteractor
 {
 public:
-    HeaterInteractor(ITemperatureSensor &tempSensor, IHeater &heater, Clock &clock, float targetTemperature);
+    HeaterInteractor(ITemperatureSensor &tempSensor, IHeater &heater, IClock &clock, float targetTemperature);
     void tick();
 
 private:
     ITemperatureSensor &_tempSensor;
     IHeater &_heater;
-    Clock &_clock;
+    IClock &_clock;
     float _targetTemperature;
     SystemTimePoint _lastChangeTime;
 };

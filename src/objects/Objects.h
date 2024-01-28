@@ -10,7 +10,7 @@ class Objects
 {
 public:
     static ISystem &getSystem();
-    static Clock &getClock();
+    static IClock &getClock();
     static ITemperatureSensor &getTemperatureSensor();
     static IHeater &getHeater();
     static HeaterInteractor &getHeaterInteractor();

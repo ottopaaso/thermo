@@ -4,45 +4,63 @@
 #include "mocks/MockSystem.h"
 #include "mocks/MockTemperatureSensor.h"
 #include "mocks/MockHeater.h"
+#include "mocks/MockClock.h"
 
-TEST(HeaterInteractorTest, LimitHeaterChanges_DuringInterval)
+#include "heater/HeaterInteractor.h"
+
+class HeaterInteractorTest : public ::testing::Test
 {
-    MockSystem mockSystem;
+protected:
     MockTemperatureSensor mockTemperatureSensor;
     MockHeater mockHeater;
+    MockClock mockClock;
+    std::unique_ptr<HeaterInteractor> sut;
 
-    // HeaterInteractor heaterInteractor(TemperatureSensor & tempSensor, Heater & heater, Clock & clock, float targetTemperature);
-    /*
-    auto tempSensor = TemperatureSensor(20.0f);
-    auto heater = Heater();
-    auto sut = HeaterInteractor(&tempSensor, &heater, 19.0f);
-    sut.tick();
-    EXPECT_EQ(heater.isHeating(), false);
+    void SetUp() override
+    {
+        sut = std::make_unique<HeaterInteractor>(mockTemperatureSensor, mockHeater, mockClock, 20.0f);
+    }
+};
 
-    tempSensor.setTemperature(16.0f);
-    clockMock.advance(std::chrono::milliseconds(1000));
-    sut.tick();
-    EXPECT_EQ(heater.isHeating(), false);
-
-    clockMock.advance(std::chrono::milliseconds(10000));
-    sut.tick();
-    EXPECT_EQ(heater.isHeating(), false);
-
-    clockMock.advance(std::chrono::milliseconds(20000));
-    sut.tick();
-    EXPECT_EQ(heater.isHeating(), true);
-
-    tempSensor.setTemperature(23.0f);
-    clockMock.advance(std::chrono::milliseconds(1000));
-    sut.tick();
-    EXPECT_EQ(heater.isHeating(), true);
-
-    clockMock.advance(std::chrono::milliseconds(10000));
-    sut.tick();
-    EXPECT_EQ(heater.isHeating(), true);
-
-    clockMock.advance(std::chrono::milliseconds(20000));
-    sut.tick();
-    EXPECT_EQ(heater.isHeating(), false);
-    */
+TEST_F(HeaterInteractorTest, DoesNotHeatInitially)
+{
+    // Setup expectations and actions on the mock objects
+    // Call methods on `sut` and assert outcomes
+    sut->tick();
+    // Replace 'heater.isHeating()' with the appropriate method to check the heating status
+    // EXPECT_EQ(heater.isHeating(), false);
 }
+
+TEST_F(HeaterInteractorTest, RemainsOffWithLowTemperatureShortInterval)
+{
+    // Setup mockTemperatureSensor to return 16.0f
+    // Setup mockClock to advance time by 1000 milliseconds
+    // Setup expectations on mockHeater
+    // Call sut->tick() and assert expectations
+}
+
+TEST_F(HeaterInteractorTest, RemainsOffWithLowTemperatureLongInterval)
+{
+    // Setup mockTemperatureSensor to return 16.0f
+    // Setup mockClock to advance time by 10000 milliseconds
+    // Setup expectations on mockHeater
+    // Call sut->tick() and assert expectations
+}
+
+TEST_F(HeaterInteractorTest, TurnsOnAfterLongInterval)
+{
+    // Setup mockTemperatureSensor to return 16.0f
+    // Setup mockClock to advance time by 20000 milliseconds
+    // Setup expectations on mockHeater
+    // Call sut->tick() and assert expectations
+}
+
+TEST_F(HeaterInteractorTest, RemainsOnWithHighTemperatureShortInterval)
+{
+    // Setup mockTemperatureSensor to return 23.0f
+    // Setup mockClock to advance time by 1000 milliseconds
+    // Setup expectations on mockHeater
+    // Call sut->tick() and assert expectations
+}
+
+// Additional tests...
