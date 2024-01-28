@@ -17,8 +17,11 @@ FetchContent_MakeAvailable(googletest)
 
 # Add a library with your source files
 add_library(Thermolib
-    src/Clock.cpp
-    src/HeaterInteractor.cpp
+    src/objects/Objects.cpp
+    src/system/System.cpp
+    src/clock/Clock.cpp
+    src/heater/Heater.cpp
+    src/heater/HeaterInteractor.cpp
 )
 
 # Add the main executable
