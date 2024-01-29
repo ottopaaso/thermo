@@ -6,7 +6,7 @@
 #include "heater/Heater.h"
 #include "heater/HeaterInteractor.h"
 
-class Objects
+class Instances
 {
 public:
     static ISystem &getSystem();
