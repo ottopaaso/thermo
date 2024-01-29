@@ -1,30 +1,30 @@
-#include "Objects.h"
+#include "Instances.h"
 
-ISystem &Objects::getSystem()
+ISystem &Instances::getSystem()
 {
     static System system;
     return system;
 }
 
-IClock &Objects::getClock()
+IClock &Instances::getClock()
 {
     static Clock clock(getSystem());
     return clock;
 }
 
-ITemperatureSensor &Objects::getTemperatureSensor()
+ITemperatureSensor &Instances::getTemperatureSensor()
 {
     static TemperatureSensor temperatureSensor(20.0f);
     return temperatureSensor;
 }
 
-IHeater &Objects::getHeater()
+IHeater &Instances::getHeater()
 {
     static Heater heater;
     return heater;
 }
 
-HeaterInteractor &Objects::getHeaterInteractor()
+HeaterInteractor &Instances::getHeaterInteractor()
 {
     static HeaterInteractor heaterInteractor(getTemperatureSensor(), getHeater(), getClock(), 20.0f);
     return heaterInteractor;
