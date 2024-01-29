@@ -1,9 +1,6 @@
 #pragma once
 
-#include <chrono>
-
-// Use system specific definitions
-using SystemTimePoint = std::chrono::time_point<std::chrono::system_clock>;
+#include "SystemTimePoint.h"
 
 class ISystem
 {
